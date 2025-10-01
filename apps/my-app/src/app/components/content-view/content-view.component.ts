@@ -3,6 +3,7 @@ import { FileItem } from '../../models/folder.model';
 
 @Component({
   selector: 'app-content-view',
+  standalone: false,
   template: `
     <div>
       <h4>Files</h4>
