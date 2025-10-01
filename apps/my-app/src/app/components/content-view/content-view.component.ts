@@ -3,6 +3,7 @@ import { FileItem } from '../../models/folder.model';
 
 @Component({
   selector: 'app-content-view',
+  standalone: false,
   template: `
     <div>
       <h4>Contents</h4>
@@ -23,5 +24,5 @@ import { FileItem } from '../../models/folder.model';
   `
 })
 export class ContentViewComponent {
-  @Input() contents: FileItem[] = [];
+  @Input() contents: FileItem[] | null = [];
 }

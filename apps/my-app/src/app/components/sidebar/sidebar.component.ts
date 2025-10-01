@@ -3,6 +3,7 @@ import { FileItem } from '../../models/folder.model';
 
 @Component({
   selector: 'app-sidebar',
+  standalone: false,
   template: `
     <ul class="list-group">
       <ng-container *ngFor="let folder of folders">
@@ -23,7 +24,7 @@ import { FileItem } from '../../models/folder.model';
   `
 })
 export class SidebarComponent {
-  @Input() folders: FileItem[] = [];
+  @Input() folders: FileItem[] | null = [];
   @Input() selectedId: string | null = null;
   @Output() folderSelected = new EventEmitter<string>();
   selectFolder(folder: FileItem) {

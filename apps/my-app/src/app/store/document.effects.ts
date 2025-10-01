@@ -6,27 +6,30 @@ import { mergeMap, map } from 'rxjs/operators';
 
 @Injectable()
 export class DocumentEffects {
-  loadFolders$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(loadFolders),
-      mergeMap(() => this.documentService.getFolders()
-        .pipe(map(folders => loadFoldersSuccess({ folders })))
-      )
-    )
-  );
-
-  loadFolderContents$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(selectFolder),
-      mergeMap(action =>
-        this.documentService.getFolderContents(action.folderId)
-          .pipe(map(contents => loadFolderContentsSuccess({ contents })))
-      )
-    )
-  );
+  loadFolders$;
+  loadFolderContents$;
 
   constructor(
     private actions$: Actions,
     private documentService: DocumentService
-  ) {}
+  ) {
+    this.loadFolders$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(loadFolders),
+        mergeMap(() => this.documentService.getFolders()
+          .pipe(map(folders => loadFoldersSuccess({ folders })))
+        )
+      )
+    );
+
+    this.loadFolderContents$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(selectFolder),
+        mergeMap(action =>
+          this.documentService.getFolderContents(action.folderId)
+            .pipe(map(contents => loadFolderContentsSuccess({ contents })))
+        )
+      )
+    );
+  }
 }
