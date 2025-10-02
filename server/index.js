@@ -8,7 +8,87 @@ app.use(express.json());
 
 // In-memory folder/file structure with more detail
 const fileSystem = [
-  // ... (unchanged)
+  {
+    id: 'projects',
+    name: 'Projects',
+    type: 'folder',
+    children: [
+      {
+        id: 'project-alpha',
+        name: 'Project Alpha (Web App)',
+        type: 'folder',
+        children: [
+          { id: 'alpha-readme', name: 'README.md', type: 'file' },
+          {
+            id: 'alpha-src',
+            name: 'src',
+            type: 'folder',
+            children: [
+              { id: 'alpha-main-js', name: 'main.js', type: 'file' },
+              { id: 'alpha-styles-css', name: 'styles.css', type: 'file' },
+              { id: 'alpha-index-html', name: 'index.html', type: 'file' },
+            ]
+          },
+          {
+            id: 'alpha-assets',
+            name: 'assets',
+            type: 'folder',
+            children: [
+              { id: 'logo-svg', name: 'logo.svg', type: 'file'}
+            ]
+          }
+        ]
+      },
+      {
+        id: 'project-beta',
+        name: 'Project Beta (Mobile App)',
+        type: 'folder',
+        children: [
+          { id: 'beta-planning-docx', name: 'planning.docx', type: 'file' },
+          { id: 'beta-spec-pdf', name: 'specifications.pdf', type: 'file' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'invoices',
+    name: 'Invoices',
+    type: 'folder',
+    children: [
+      {
+        id: 'invoices-2024',
+        name: '2024',
+        type: 'folder',
+        children: [
+          { id: 'inv-jan-2024', name: 'invoice-jan-2024.pdf', type: 'file' },
+          { id: 'inv-feb-2024', name: 'invoice-feb-2024.pdf', type: 'file' }
+        ]
+      },
+      { id: 'inv-q1-2025', name: 'invoice-q1-2025.pdf', type: 'file' },
+      { id: 'inv-q2-2025', name: 'invoice-q2-2025.pdf', type: 'file' },
+      { id: 'inv-q3-2025', name: 'invoice-q3-2025.pdf', type: 'file' },
+    ]
+  },
+  {
+    id: 'photos',
+    name: 'Photos',
+    type: 'folder',
+    children: [
+      {
+        id: 'vacation-2025',
+        name: 'Vacation 2025',
+        type: 'folder',
+        children: [
+          { id: 'beach-photo-jpg', name: 'beach.jpg', type: 'file' },
+          { id: 'mountain-photo-png', name: 'mountains.png', type: 'file' }
+        ]
+      },
+      { id: 'family-gathering-jpg', name: 'family-gathering.jpg', type: 'file' }
+    ]
+  },
+  {
+    id: 'notes-txt', name: 'notes.txt', type: 'file'
+  }
 ];
 
 // Helper: find an item (file or folder) by id recursively
@@ -24,19 +104,15 @@ function findItemById(items, id) {
 }
 
 // --- 4-second delay (first call only) logic ---
-let firstFoldersCall = true;
 let firstFolderContentsCall = true;
 
 // GET /folders - entire tree
 app.get('/folders', (req, res) => {
   const sendResponse = () => res.json(fileSystem);
 
-  if (firstFoldersCall) {
-    firstFoldersCall = false;
+
     setTimeout(sendResponse, 4000);
-  } else {
-    sendResponse();
-  }
+
 });
 
 // GET /folders/:id - contents of a specific folder

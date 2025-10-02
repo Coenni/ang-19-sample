@@ -5,7 +5,7 @@ import { FileItem } from '../../models/folder.model';
   selector: 'app-content-view',
   standalone: false,
   template: `
-    <div>
+    <div style="padding-top: 100px">
       <h4>Files</h4>
       <div *ngIf="filesOnly.length; else empty">
         <div class="mb-2" *ngIf="anySelected">
