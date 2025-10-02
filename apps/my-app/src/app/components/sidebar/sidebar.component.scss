@@ -1,0 +1,26 @@
+.sidebar-list {
+  list-style: none;
+  padding-left: 0;
+}
+.sidebar-list > li,
+.sidebar-list li {
+  border: none !important;
+  background: none !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+}
+.sidebar-list li .bi {
+  color: #1976d2;
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+.sidebar-list li.active, .sidebar-list li:active, .sidebar-list li.selected {
+  background: none !important;
+}
+.sidebar-list ul {
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid #e0e0e0;
+}

@@ -12,16 +12,22 @@ import { DocumentEffects } from './store/document.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CommonModule } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, SidebarComponent, ContentViewComponent],
-  imports: [BrowserModule, CommonModule , RouterModule.forRoot(appRoutes),
+  imports: [
+    BrowserModule,
+    CommonModule,
+    RouterModule.forRoot(appRoutes),
     StoreModule.forRoot({ document: documentReducer }),
     EffectsModule.forRoot([DocumentEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,
-    }),],
+    }),
+    FormsModule,
+  ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],
 })

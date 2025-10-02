@@ -3,12 +3,13 @@ import { FileItem } from '../../models/folder.model';
 
 @Component({
   selector: 'app-content-view',
+  standalone: false,
   template: `
     <div>
       <h4>Files</h4>
       <div *ngIf="filesOnly.length; else empty">
         <div class="mb-2" *ngIf="anySelected">
-          <button class="btn btn-success btn-sm" (click)="downloadAll()">Download All</button>
+          <button class="btn btn-primary btn-sm" (click)="downloadAll()">Download All</button>
         </div>
         <table class="table">
           <thead>
@@ -45,9 +46,7 @@ import { FileItem } from '../../models/folder.model';
       <ng-template #empty>No files in this folder.</ng-template>
     </div>
   `,
-  styles: [`
-    .table th, .table td { vertical-align: middle; }
-  `]
+  styleUrls: ['./content-view.component.scss'],
 })
 export class ContentViewComponent implements OnChanges {
   @Input() contents: FileItem[] | null = [];

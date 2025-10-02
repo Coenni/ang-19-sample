@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { FileItem } from '../models/folder.model';
 
 @Injectable({ providedIn: 'root' })
@@ -13,7 +13,10 @@ export class DocumentService {
     return this.http.get<FileItem[]>(`${this.apiUrl}/folders`);
   }
 
-  getFolderContents(id: string): Observable<FileItem[]> {
+  getFolderContents(id: string|null): Observable<FileItem[]> {
+    if (id==null) {
+      return of([]);
+    }
     return this.http.get<FileItem[]>(`${this.apiUrl}/folders/${id}`);
   }
 }

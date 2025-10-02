@@ -64,7 +64,9 @@ const fileSystem = [
           { id: 'inv-feb-2024', name: 'invoice-feb-2024.pdf', type: 'file' }
         ]
       },
-      { id: 'inv-q1-2025', name: 'invoice-q1-2025.pdf', type: 'file' }
+      { id: 'inv-q1-2025', name: 'invoice-q1-2025.pdf', type: 'file' },
+      { id: 'inv-q2-2025', name: 'invoice-q2-2025.pdf', type: 'file' },
+      { id: 'inv-q3-2025', name: 'invoice-q3-2025.pdf', type: 'file' },
     ]
   },
   {

@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(loadFolders());
   }
-  onFolderSelected(folderId: string) {
+  onFolderSelected(folderId: string|null) {
     this.store.dispatch(selectFolder({ folderId }));
   }
 }
